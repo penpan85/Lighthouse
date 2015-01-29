@@ -6,11 +6,13 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.widget.Toast;
 
+import static me.swapnilsingh.android.lighthouselivewallpaper.R.xml.*;
+
 public class MyPreferencesActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.prefs);
+        addPreferencesFromResource(prefs);
 
         // add a validator to the "numberofCircles" preference so that it only
         // accepts numbers
