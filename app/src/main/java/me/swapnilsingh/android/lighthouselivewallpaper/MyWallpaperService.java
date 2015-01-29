@@ -2,12 +2,20 @@ package me.swapnilsingh.android.lighthouselivewallpaper;
 
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+
+import java.lang.reflect.Array;
 
 public class MyWallpaperService extends WallpaperService {
 
@@ -28,6 +36,13 @@ public class MyWallpaperService extends WallpaperService {
         private int width;
         int height;
         private boolean visible = true;
+        private Paint paint = new Paint();
+
+        private int backgroundColor = Color.argb(255, 29, 34, 48);
+
+        Resources res = getResources();
+        Bitmap orangeStar = BitmapFactory.decodeResource(res, R.drawable.orange_star);
+        Bitmap moon = BitmapFactory.decodeResource(res, R.drawable.moon);
 
         public MyWallpaperEngine() {
             SharedPreferences prefs = PreferenceManager
@@ -71,7 +86,13 @@ public class MyWallpaperService extends WallpaperService {
             try {
                 canvas = holder.lockCanvas();
                 if (canvas != null) {
-
+                    canvas.drawColor(backgroundColor);
+                    float orangeStarx = 10;
+                    float orangeStary = 90;
+                    canvas.drawBitmap(orangeStar, orangeStarx, orangeStary, paint);
+                    float moonX = 100;
+                    float moonY = 300;
+                    canvas.drawBitmap(moon, moonX, moonY, paint);
                 }
             } finally {
                 if (canvas != null)
